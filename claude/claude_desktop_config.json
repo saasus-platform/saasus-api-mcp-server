@@ -1,0 +1,15 @@
+{
+    "mcpServers": {
+        "saasusapis": {
+            "command": "/path/to/node",
+            "args": [
+                "/path/to/mcpServer.js"
+            ],
+            "env": {
+                "SAASUS_PLATFORM_SAASID": "3bCJatwxxx4xxxx",
+                "SAASUS_PLATFORM_APIKEY": "wRita7kxxx9N6cqUwxxxx",
+                "SAASUS_PLATFORM_SECRETKEY": "BLIxxxrgvTQnSxxxx"
+            }
+        }
+    }
+}
