@@ -24,7 +24,7 @@ const apiTool = {
     type: 'function',
     function: {
       name: 'updateusermfapreference',
-      description: `Update User's MFA Settings: Update user\'s MFA settings. `,
+      description: `Update User's MFA Settings: Update user's MFA settings. `,
       parameters: {
       "type": "object",
       "properties": {

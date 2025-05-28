@@ -27,7 +27,7 @@ const apiTool = {
     type: 'function',
     function: {
       name: 'requestemailupdate',
-      description: `Request User Email Update: Request to update the user\'s email address. Sends a verification code to the requested email address. Requires the user\'s access token. The verification code is valid for 24 hours. `,
+      description: `Request User Email Update: Request to update the user's email address. Sends a verification code to the requested email address. Requires the user's access token. The verification code is valid for 24 hours. `,
       parameters: {
       "type": "object",
       "properties": {

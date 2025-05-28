@@ -24,7 +24,7 @@ const apiTool = {
     type: 'function',
     function: {
       name: 'getcatalogentityvisibility',
-      description: `Obtain product publication status from AWS Marketplace: Retrieve the product\'s publication status from AWS Marketplace. `,
+      description: `Obtain product publication status from AWS Marketplace: Retrieve the product's publication status from AWS Marketplace. `,
       parameters: {
       "type": "object",
       "properties": {},

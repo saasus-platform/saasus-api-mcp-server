@@ -25,7 +25,7 @@ const apiTool = {
     type: 'function',
     function: {
       name: 'confirmemailupdate',
-      description: `Confirm User Email Update: Verify the code to confirm the user\'s email address update. Requires the user\'s access token. `,
+      description: `Confirm User Email Update: Verify the code to confirm the user's email address update. Requires the user's access token. `,
       parameters: {
       "type": "object",
       "properties": {

@@ -27,7 +27,7 @@ const apiTool = {
     type: 'function',
     function: {
       name: 'createuserattribute',
-      description: `Create User Attributes: Create additional user attributes to be kept on the SaaSus Platform. You can give different values to each tenant. For example, you can define items associated with a user, such as user name, birthday, etc. If you don\'t want personal information on the SaaS Platform side, personal information can be kept on the SaaS side without user attribute definition. `,
+      description: `Create User Attributes: Create additional user attributes to be kept on the SaaSus Platform. You can give different values to each tenant. For example, you can define items associated with a user, such as user name, birthday, etc. If you don't want personal information on the SaaS Platform side, personal information can be kept on the SaaS side without user attribute definition. `,
       parameters: {
       "type": "object",
       "properties": {
