@@ -30,6 +30,127 @@ function resolveRef(ref, spec) {
   return current;
 }
 
+// discriminatorを持つoneOfスキーマを処理する関数
+function handleDiscriminatorSchema(schema, spec, visited = new Set()) {
+  if (!schema.oneOf || !schema.discriminator) {
+    return schema;
+  }
+
+  const discriminatorProperty = schema.discriminator.propertyName;
+  const merged = {
+    type: "object",
+    properties: {},
+    required: [],
+    // 各バリアントの必須フィールド情報を保持
+    variantRequiredFields: new Map(),
+  };
+
+  // discriminatorプロパティを追加
+  merged.properties[discriminatorProperty] = {
+    type: "string",
+    description: `Type discriminator. Possible values: ${schema.oneOf
+      .map(
+        (_, i) =>
+          Object.keys(schema.discriminator.mapping || {})[i] || `variant${i}`
+      )
+      .join(", ")}`,
+    enum: Object.keys(schema.discriminator.mapping || {}),
+  };
+  merged.required.push(discriminatorProperty);
+
+  // 各バリアントから共通プロパティを抽出
+  const commonProperties = new Map();
+  const variantRequiredFields = new Map(); // 各バリアントの必須フィールドを記録
+
+  for (const [index, variant] of schema.oneOf.entries()) {
+    const expandedVariant = expandSchema(variant, spec, visited);
+    const variantType =
+      Object.keys(schema.discriminator.mapping || {})[index] ||
+      `variant${index}`;
+
+    // このバリアントの必須フィールドを記録（typeフィールドも含める）
+    const requiredFields = [
+      ...(expandedVariant.required || []),
+      discriminatorProperty,
+    ];
+    // 重複を除去
+    const uniqueRequiredFields = [...new Set(requiredFields)];
+    variantRequiredFields.set(variantType, uniqueRequiredFields);
+    merged.variantRequiredFields.set(variantType, uniqueRequiredFields);
+
+    if (expandedVariant.properties) {
+      for (const [propName, propSchema] of Object.entries(
+        expandedVariant.properties
+      )) {
+        if (propName === discriminatorProperty) continue;
+
+        if (!commonProperties.has(propName)) {
+          commonProperties.set(propName, {
+            schema: propSchema,
+            requiredIn: [],
+            variants: [variantType],
+          });
+        } else {
+          commonProperties.get(propName).variants.push(variantType);
+        }
+
+        // 必須フィールドの追跡
+        if (expandedVariant.required?.includes(propName)) {
+          commonProperties.get(propName).requiredIn.push(variantType);
+        }
+      }
+    }
+  }
+
+  // 共通プロパティをマージ
+  for (const [propName, propInfo] of commonProperties.entries()) {
+    let description = propInfo.schema.description || "";
+
+    // 使用場面の情報を追加
+    if (propInfo.variants.length < schema.oneOf.length) {
+      description += ` (Used in: ${propInfo.variants.join(", ")})`;
+    }
+
+    // 必須条件の情報を追加
+    if (
+      propInfo.requiredIn.length > 0 &&
+      propInfo.requiredIn.length < schema.oneOf.length
+    ) {
+      description += ` [Required for: ${propInfo.requiredIn.join(", ")}]`;
+    }
+
+    merged.properties[propName] = {
+      ...propInfo.schema,
+      description: description.trim(),
+    };
+
+    // 全バリアントで必須の場合のみ、必須として扱う
+    // discriminatorスキーマでは、各タイプで異なる必須パラメータがあるため
+    // 共通して必須のもののみをrequiredに含める
+    if (propInfo.requiredIn.length === schema.oneOf.length) {
+      merged.required.push(propName);
+    }
+  }
+
+  // 各バリアントの必須フィールド情報を修正
+  // allOfで継承されたフィールドが正しく反映されるように調整
+  for (const [variantType, requiredFields] of variantRequiredFields.entries()) {
+    // 基本プロパティ（name, display_name, description, currency）が不足している場合は追加
+    const baseProps = ["name", "display_name", "description", "currency"];
+    const missingBaseProps = baseProps.filter(
+      (prop) => merged.properties[prop] && !requiredFields.includes(prop)
+    );
+
+    if (missingBaseProps.length > 0) {
+      const updatedRequiredFields = [...requiredFields, ...missingBaseProps];
+      variantRequiredFields.set(variantType, updatedRequiredFields);
+      merged.variantRequiredFields.set(variantType, updatedRequiredFields);
+    }
+  }
+
+  return merged;
+}
+
 // スキーマを再帰的に展開する関数
 function expandSchema(schema, spec, visited = new Set()) {
   if (!schema || typeof schema !== "object") {
@@ -70,11 +191,25 @@ function expandSchema(schema, spec, visited = new Set()) {
     }
     // 重複を除去
     merged.required = [...new Set(merged.required)];
+
+    // 元のスキーマの直接のプロパティも追加
+    if (schema.properties) {
+      Object.assign(merged.properties, schema.properties);
+    }
+    if (schema.required) {
+      merged.required.push(...schema.required);
+      merged.required = [...new Set(merged.required)];
+    }
+
     return merged;
   }
 
-  // oneOfを処理（最初のスキーマを使用）
+  // oneOfを処理（discriminatorがある場合は特別処理、ない場合は最初のスキーマを使用）
   if (schema.oneOf && schema.oneOf.length > 0) {
+    if (schema.discriminator) {
+      // discriminatorがある場合は、すべてのバリアントの共通プロパティを抽出
+      return handleDiscriminatorSchema(schema, spec, visited);
+    }
     return expandSchema(schema.oneOf[0], spec, visited);
   }
 
@@ -135,10 +270,17 @@ function parseRequestBodyParameters(requestBody, spec) {
   const schema = requestBody.content["application/json"].schema;
   const expandedSchema = expandSchema(schema, spec);
 
-  return {
+  const result = {
     properties: expandedSchema.properties || {},
     required: expandedSchema.required || [],
   };
+
+  // discriminatorスキーマの場合、variantRequiredFields情報を保持
+  if (expandedSchema.variantRequiredFields) {
+    result.variantRequiredFields = expandedSchema.variantRequiredFields;
+  }
+
+  return result;
 }
 
 // パスパラメータを解析
@@ -283,6 +425,13 @@ function generateToolFile(
     required: allParams.filter((p) => p.required).map((p) => p.name),
   };
 
+  // discriminatorスキーマの場合、動的バリデーション情報を追加
+  if (requestBodyParams.variantRequiredFields) {
+    parameterSchema.variantRequiredFields = Object.fromEntries(
+      requestBodyParams.variantRequiredFields
+    );
+  }
+
   for (const param of allParams) {
     const paramDef = {
       type: param.type,
@@ -300,6 +449,27 @@ function generateToolFile(
     }
 
     parameterSchema.properties[param.name] = paramDef;
+  }
+
+  // discriminatorスキーマの場合、説明文を拡張
+  let enhancedDescription = operation.summary || operationId;
+  if (operation.description) {
+    enhancedDescription +=
+      ": " +
+      (operation.description || operation["x-description-i18n"]?.jpn || "");
+  }
+
+  // variantRequiredFieldsがある場合、各バリアントの必須フィールド情報を追加
+  if (requestBodyParams.variantRequiredFields) {
+    enhancedDescription += "\\n\\nRequired fields by type:";
+    for (const [
+      variantType,
+      requiredFields,
+    ] of requestBodyParams.variantRequiredFields.entries()) {
+      enhancedDescription += `\\n- ${variantType}: ${requiredFields.join(
+        ", "
+      )}`;
+    }
   }
 
   const content = `/**
@@ -327,15 +497,9 @@ const apiTool = {
     type: 'function',
     function: {
       name: '${toolName}',
-      description: \`${operation.summary || operationId}${
-    operation.description
-      ? ": " +
-        (operation.description || operation["x-description-i18n"]?.jpn || "")
-          .replace(/\n/g, " ")
-          .replace(/'/g, "\\'")
-          .replace(/`/g, "\\`")
-      : ""
-  }\`,
+      description: \`${enhancedDescription
+        .replace(/\n/g, " ")
+        .replace(/`/g, "\\`")}\`,
       parameters: ${JSON.stringify(parameterSchema, null, 6)}
     }
   }

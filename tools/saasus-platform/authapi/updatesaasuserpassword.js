@@ -24,7 +24,7 @@ const apiTool = {
     type: 'function',
     function: {
       name: 'updatesaasuserpassword',
-      description: `Change Password: Change user\'s login password. `,
+      description: `Change Password: Change user's login password. `,
       parameters: {
       "type": "object",
       "properties": {

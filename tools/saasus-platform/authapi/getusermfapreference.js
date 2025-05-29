@@ -24,7 +24,7 @@ const apiTool = {
     type: 'function',
     function: {
       name: 'getusermfapreference',
-      description: `Get User's MFA Settings: Get the user\'s MFA settings. `,
+      description: `Get User's MFA Settings: Get the user's MFA settings. `,
       parameters: {
       "type": "object",
       "properties": {

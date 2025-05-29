@@ -24,7 +24,7 @@ const apiTool = {
     type: 'function',
     function: {
       name: 'updatesaasuseremail',
-      description: `Change Email: Change user\'s email. `,
+      description: `Change Email: Change user's email. `,
       parameters: {
       "type": "object",
       "properties": {
