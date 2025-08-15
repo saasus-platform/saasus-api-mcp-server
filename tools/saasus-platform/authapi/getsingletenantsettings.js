@@ -1,5 +1,5 @@
 /**
- * Retrieve the settings of the single tenant.
+ * Retrieve the settings of the SaaS Infrastructure Management.
  * 
  */
 import { createExecuteFunction } from "../../common/executeFunction.js";
@@ -23,7 +23,7 @@ const apiTool = {
     type: 'function',
     function: {
       name: 'getsingletenantsettings',
-      description: `Retrieve the settings of the single tenant.`,
+      description: `Retrieve the settings of the SaaS Infrastructure Management.`,
       parameters: {
       "type": "object",
       "properties": {},
