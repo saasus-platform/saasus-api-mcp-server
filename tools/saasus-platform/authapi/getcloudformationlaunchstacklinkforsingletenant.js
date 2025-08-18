@@ -1,6 +1,6 @@
 /**
- * Get CloudFormation Stack Launch Link For Single Tenant
- * Get the CloudFormation stack activation link for Single Tenant.
+ * Get CloudFormation Stack Launch Link For SaaS Infrastructure Management
+ * Get the CloudFormation stack activation link for SaaS Infrastructure Management.
 
  */
 import { createExecuteFunction } from "../../common/executeFunction.js";
@@ -24,7 +24,7 @@ const apiTool = {
     type: 'function',
     function: {
       name: 'getcloudformationlaunchstacklinkforsingletenant',
-      description: `Get CloudFormation Stack Launch Link For Single Tenant: Get the CloudFormation stack activation link for Single Tenant. `,
+      description: `Get CloudFormation Stack Launch Link For SaaS Infrastructure Management: Get the CloudFormation stack activation link for SaaS Infrastructure Management. `,
       parameters: {
       "type": "object",
       "properties": {},

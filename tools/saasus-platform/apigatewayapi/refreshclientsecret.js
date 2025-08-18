@@ -1,18 +1,18 @@
 /**
- * Get allowed IP addresses for the tenant
- * Get allowed IP addresses for the tenant.
+ * Update the client secret of the API key
+ * Update the client secret of the API key.
 
  */
 import { createExecuteFunction } from "../../common/executeFunction.js";
 
 const executeFunction = createExecuteFunction(
   'https://api.saasus.io/v1/apigateway',
-  'get',
-  '/tenants/{tenant_id}/allowed-ips',
-  [{"name":"tenant_id","type":"string","required":true,"description":"Tenant ID"}],
+  'post',
+  '/api-keys/{api_key}/client-secret',
+  [{"name":"api_key","type":"string","required":true,"description":"API Key"}],
   [],
   {"properties":{},"required":[]},
-  'getAllowedIps'
+  'refreshClientSecret'
 );
 
 /**
@@ -23,18 +23,18 @@ const apiTool = {
   definition: {
     type: 'function',
     function: {
-      name: 'getallowedips',
-      description: `Get allowed IP addresses for the tenant: Get allowed IP addresses for the tenant. `,
+      name: 'refreshclientsecret',
+      description: `Update the client secret of the API key: Update the client secret of the API key. `,
       parameters: {
       "type": "object",
       "properties": {
-            "tenant_id": {
+            "api_key": {
                   "type": "string",
-                  "description": "Tenant ID"
+                  "description": "API Key"
             }
       },
       "required": [
-            "tenant_id"
+            "api_key"
       ]
 }
     }
