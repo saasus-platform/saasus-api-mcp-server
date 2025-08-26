@@ -609,10 +609,19 @@ async function generateTools() {
         }
       }
     }
-
+    // 既存のtimeディレクトリから時間関連ツールのパスを取得
+    let existingTimePaths = [];
+    const timeDir = path.join(__dirname, "../tools/time");
+    if (fs.existsSync(timeDir)) {
+      const timeFiles = fs.readdirSync(timeDir)
+        .filter(file => file.endsWith('.js'))
+        .map(file => `time/${file}`);
+      existingTimePaths = timeFiles;
+    }
     // paths.jsファイルの更新
     const pathsContent = `export const toolPaths = [
-${toolPaths.map((path) => `  '${path}'`).join(",\n")}
+${toolPaths.map((path) => `  '${path}'`).join(",\n")}${existingTimePaths.length > 0 ? ',' : ''}
+${existingTimePaths.map((path) => `  '${path}'`).join(",\n")}
 ];
 `;
 
