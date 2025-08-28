@@ -14,13 +14,11 @@ const calculateRelativeTime = async (args) => {
   const now = new Date();
   
   // Reset seconds and milliseconds if specified
-  if (reset_seconds || reset_milliseconds) {
-    if (reset_seconds) {
-      now.setSeconds(0);
-    }
-    if (reset_milliseconds) {
-      now.setMilliseconds(0);
-    }
+  if (reset_seconds) {
+    now.setSeconds(0);
+  }
+  if (reset_milliseconds) {
+    now.setMilliseconds(0);
   }
   
   const totalMinutes = offset_minutes + (offset_hours * 60) + (offset_days * 24 * 60);

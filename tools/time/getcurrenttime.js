@@ -6,14 +6,15 @@ const getCurrentTime = async () => {
   const now = new Date();
   const utcTimestamp = Math.floor(now.getTime() / 1000);
   const utcISO = now.toISOString();
-  const jstTime = new Date(now.getTime() + (9 * 60 * 60 * 1000)).toISOString(); // JST (UTC+9)
-  
+  const jstDate = new Date(now.getTime() + (9 * 60 * 60 * 1000)); // JST (UTC+9)
+  const jstTime = jstDate.toISOString();
+
   return {
     utc_timestamp: utcTimestamp,
     utc_iso: utcISO,
     jst_iso: jstTime,
     utc_formatted: now.toUTCString(),
-    jst_formatted: new Date(now.getTime() + (9 * 60 * 60 * 1000)).toUTCString().replace('GMT', 'JST'),
+    jst_formatted: jstDate.toUTCString().replace('GMT', 'JST'),
     unix_timestamp: now.getTime()
   };
 };
