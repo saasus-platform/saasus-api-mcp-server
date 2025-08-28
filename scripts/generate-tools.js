@@ -619,9 +619,9 @@ async function generateTools() {
       existingTimePaths = timeFiles;
     }
     // paths.jsファイルの更新
+    const allPaths = [...toolPaths, ...existingTimePaths];
     const pathsContent = `export const toolPaths = [
-${toolPaths.map((path) => `  '${path}'`).join(",\n")}${existingTimePaths.length > 0 ? ',' : ''}
-${existingTimePaths.map((path) => `  '${path}'`).join(",\n")}
+${allPaths.map((path) => `  '${path}'`).join(",\n")}
 ];
 `;
 
