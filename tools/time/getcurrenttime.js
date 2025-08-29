@@ -14,7 +14,7 @@ const getCurrentTime = async () => {
     utc_iso: utcISO,
     jst_iso: jstTime,
     utc_formatted: now.toUTCString(),
-    jst_formatted: jstDate.toUTCString().replace('GMT', 'JST'),
+    jst_formatted: jstDate.toLocaleString('en-US', { timeZone: 'Asia/Tokyo', hour12: false }),
     unix_timestamp: now.getTime()
   };
 };
