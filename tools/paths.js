@@ -171,5 +171,7 @@ export const toolPaths = [
   'saasus-platform/pricingapi/createmeteringunit.js',
   'saasus-platform/pricingapi/getmeteringunits.js',
   'saasus-platform/pricingapi/updatemeteringunitbyid.js',
-  'saasus-platform/pricingapi/deletemeteringunitbyid.js'
+  'saasus-platform/pricingapi/deletemeteringunitbyid.js',
+  'time/calculaterelativetime.js',
+  'time/getcurrenttime.js'
 ];
