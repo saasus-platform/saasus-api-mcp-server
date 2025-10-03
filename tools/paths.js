@@ -95,6 +95,8 @@ export const toolPaths = [
   'saasus-platform/authapi/deletestripetenantandpricing.js',
   'saasus-platform/authapi/getauthcredentials.js',
   'saasus-platform/authapi/createauthcredentials.js',
+  'saasus-platform/authapi/signin.js',
+  'saasus-platform/authapi/respondtosigninchallenge.js',
   'saasus-platform/authapi/signup.js',
   'saasus-platform/authapi/resendsignupconfirmationemail.js',
   'saasus-platform/authapi/signupwithawsmarketplace.js',
