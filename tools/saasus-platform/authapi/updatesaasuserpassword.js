@@ -11,7 +11,7 @@ const executeFunction = createExecuteFunction(
   '/users/{user_id}/password',
   [{"name":"user_id","type":"string","required":true,"description":"User ID"}],
   [],
-  {"properties":{"password":{"type":"string","example":"@Pass#Word1","description":"Password","x-description-i18n":{"jpn":"パスワード"}}},"required":["password"]},
+  {"properties":{"password":{"type":"string","example":"@Pass#Word1","description":"Password","x-description-i18n":{"jpn":"パスワード"}},"temporary":{"type":"boolean","description":"Set to true to mark the new password as a temporary password (user must change on next sign-in)","x-description-i18n":{"jpn":"true を指定すると新しいパスワードを一時パスワードとして設定します（次回サインイン時に変更が必要）"}}},"required":["password"]},
   'updateSaasUserPassword'
 );
 
@@ -35,6 +35,10 @@ const apiTool = {
             "password": {
                   "type": "string",
                   "description": "Password"
+            },
+            "temporary": {
+                  "type": "boolean",
+                  "description": "Set to true to mark the new password as a temporary password (user must change on next sign-in)"
             }
       },
       "required": [
