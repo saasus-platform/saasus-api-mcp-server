@@ -1,6 +1,7 @@
 /**
  * Delete User
  * Delete all users with matching user ID from the tenant and SaaS.
+Returns user information before deletion.
 
  */
 import { createExecuteFunction } from "../../common/executeFunction.js";
@@ -24,7 +25,7 @@ const apiTool = {
     type: 'function',
     function: {
       name: 'deletesaasuser',
-      description: `Delete User: Delete all users with matching user ID from the tenant and SaaS. `,
+      description: `Delete User: Delete all users with matching user ID from the tenant and SaaS. Returns user information before deletion. `,
       parameters: {
       "type": "object",
       "properties": {

@@ -11,7 +11,7 @@ const executeFunction = createExecuteFunction(
   '/users/{user_id}/mfa/preference',
   [{"name":"user_id","type":"string","required":true,"description":"User ID"}],
   [],
-  {"properties":{"enabled":{"title":"Enable MFA","x-title-i18n":{"jpn":"MFAを有効にするか否か"},"description":"enable MFA","x-description-i18n":{"jpn":"MFAを有効にするか否か"},"type":"boolean"},"method":{"title":"MFA Method","x-title-i18n":{"jpn":"MFAの方法"},"description":"MFA method (required if enabled is true)","x-description-i18n":{"jpn":"MFAの方法(enabledがtrueの場合は必須)"},"type":"string","enum":["softwareToken"]}},"required":["enabled"]},
+  {"properties":{"enabled":{"title":"Enable MFA","x-title-i18n":{"jpn":"MFAを有効にするか否か"},"description":"enable MFA","x-description-i18n":{"jpn":"MFAを有効にするか否か"},"type":"boolean"},"method":{"title":"MFA Method","x-title-i18n":{"jpn":"MFAの方法"},"description":"MFA method (required if enabled is true)","x-description-i18n":{"jpn":"MFAの方法(enabledがtrueの場合は必須)"},"type":"string","enum":["softwareToken","email"]}},"required":["enabled"]},
   'updateUserMfaPreference'
 );
 
@@ -40,7 +40,8 @@ const apiTool = {
                   "type": "string",
                   "description": "MFA method (required if enabled is true)",
                   "enum": [
-                        "softwareToken"
+                        "softwareToken",
+                        "email"
                   ]
             }
       },
