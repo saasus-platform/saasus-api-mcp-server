@@ -102,6 +102,8 @@ export const toolPaths = [
   'saasus-platform/authapi/getauthcredentials.js',
   'saasus-platform/authapi/createauthcredentials.js',
   'saasus-platform/authapi/signin.js',
+  'saasus-platform/authapi/confirmdevice.js',
+  'saasus-platform/authapi/updatedevicestatus.js',
   'saasus-platform/authapi/respondtosigninchallenge.js',
   'saasus-platform/authapi/signup.js',
   'saasus-platform/authapi/resendsignupconfirmationemail.js',
