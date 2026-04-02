@@ -11,7 +11,7 @@ const executeFunction = createExecuteFunction(
   '/customize-page-settings',
   [],
   [],
-  {"properties":{"icon":{"type":"string","format":"base64","example":"data:image/png;base64,ZDMiIHN0UmVmOmRvY3VtZW50SUQ9Inhtc==","description":"service icon","x-description-i18n":{"jpn":"サービスアイコン"}},"favicon":{"type":"string","format":"base64","example":"data:image/png;base64,ZDMiIHN0UmVmOmRvY3VtZW50SUQ9Inhtc==","description":"favicon","x-description-i18n":{"jpn":"ファビコン"}},"title":{"type":"string","example":"SaaSus","description":"service name","x-description-i18n":{"jpn":"サービス名"}},"terms_of_service_url":{"type":"string","example":"http://dev.example.com/terms","description":"terms of service URL","x-description-i18n":{"jpn":"利用規約URL"}},"privacy_policy_url":{"type":"string","example":"http://dev.example.com/privacy","description":"privacy policy URL","x-description-i18n":{"jpn":"プライバシーポリシーURL"}},"google_tag_manager_container_id":{"type":"string","example":"GTM-XXXXXXX","description":"Google Tag Manager container ID","x-description-i18n":{"jpn":"Google Tag Manager コンテナ ID"}}},"required":["icon","favicon","title","terms_of_service_url","privacy_policy_url","google_tag_manager_container_id"]},
+  {"properties":{"icon":{"type":"string","format":"base64","example":"data:image/png;base64,ZDMiIHN0UmVmOmRvY3VtZW50SUQ9Inhtc==","description":"service icon","x-description-i18n":{"jpn":"サービスアイコン"}},"favicon":{"type":"string","format":"base64","example":"data:image/png;base64,ZDMiIHN0UmVmOmRvY3VtZW50SUQ9Inhtc==","description":"favicon","x-description-i18n":{"jpn":"ファビコン"}},"title":{"type":"string","example":"SaaSus","description":"service name","x-description-i18n":{"jpn":"サービス名"}},"terms_of_service_url":{"type":"string","example":"http://dev.example.com/terms","description":"terms of service URL","x-description-i18n":{"jpn":"利用規約URL"}},"privacy_policy_url":{"type":"string","example":"http://dev.example.com/privacy","description":"privacy policy URL","x-description-i18n":{"jpn":"プライバシーポリシーURL"}},"google_tag_manager_container_id":{"type":"string","example":"GTM-XXXXXXX","description":"Google Tag Manager container ID","x-description-i18n":{"jpn":"Google Tag Manager コンテナ ID"}},"is_sign_in_id_enabled":{"type":"boolean","example":false,"description":"display setting for sign-in ID on the sign-in screen","x-description-i18n":{"jpn":"ログインIDのログイン画面での表示設定"}}},"required":["icon","favicon","title","terms_of_service_url","privacy_policy_url","google_tag_manager_container_id"]},
   'updateCustomizePageSettings'
 );
 
@@ -51,6 +51,10 @@ const apiTool = {
             "google_tag_manager_container_id": {
                   "type": "string",
                   "description": "Google Tag Manager container ID"
+            },
+            "is_sign_in_id_enabled": {
+                  "type": "boolean",
+                  "description": "display setting for sign-in ID on the sign-in screen"
             }
       },
       "required": [
