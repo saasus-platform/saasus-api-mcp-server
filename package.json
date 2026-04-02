@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A simple MCP server with packaged tools",
   "main": "index.js",
+  "bin": {
+    "saasus-api-mcp-server": "./index.js"
+  },
   "type": "module",
   "scripts": {
     "list-tools": "node index.js tools"
