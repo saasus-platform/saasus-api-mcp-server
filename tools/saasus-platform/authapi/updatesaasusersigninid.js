@@ -1,8 +1,6 @@
 /**
- * Change Email
- * Change user's email.
-The user must be an email authentication user.
-Sign-in ID authentication users cannot change their email.
+ * Change Sign-in ID
+ * Change user's sign-in ID.
 
  */
 import { createExecuteFunction } from "../../common/executeFunction.js";
@@ -10,11 +8,11 @@ import { createExecuteFunction } from "../../common/executeFunction.js";
 const executeFunction = createExecuteFunction(
   'https://api.saasus.io/v1/auth',
   'patch',
-  '/users/{user_id}/email',
+  '/users/{user_id}/sign-in-id',
   [{"name":"user_id","type":"string","required":true,"description":"User ID"}],
   [],
-  {"properties":{"email":{"type":"string","example":"hoge@example.com","description":"E-mail","x-description-i18n":{"jpn":"メールアドレス"}}},"required":["email"]},
-  'updateSaasUserEmail'
+  {"properties":{"sign_in_id":{"type":"string","example":"user_name_01","description":"Sign-in ID","x-description-i18n":{"jpn":"ログインID"}}},"required":["sign_in_id"]},
+  'updateSaasUserSignInId'
 );
 
 /**
@@ -25,8 +23,8 @@ const apiTool = {
   definition: {
     type: 'function',
     function: {
-      name: 'updatesaasuseremail',
-      description: `Change Email: Change user's email. The user must be an email authentication user. Sign-in ID authentication users cannot change their email. `,
+      name: 'updatesaasusersigninid',
+      description: `Change Sign-in ID: Change user's sign-in ID. `,
       parameters: {
       "type": "object",
       "properties": {
@@ -34,14 +32,14 @@ const apiTool = {
                   "type": "string",
                   "description": "User ID"
             },
-            "email": {
+            "sign_in_id": {
                   "type": "string",
-                  "description": "E-mail"
+                  "description": "Sign-in ID"
             }
       },
       "required": [
             "user_id",
-            "email"
+            "sign_in_id"
       ]
 }
     }
