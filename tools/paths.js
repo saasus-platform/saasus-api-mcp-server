@@ -49,6 +49,7 @@ export const toolPaths = [
   'saasus-platform/authapi/updateusermfapreference.js',
   'saasus-platform/authapi/unlinkprovider.js',
   'saasus-platform/authapi/getalltenantusers.js',
+  'saasus-platform/authapi/searchtenantusers.js',
   'saasus-platform/authapi/getalltenantuser.js',
   'saasus-platform/authapi/gettenantusers.js',
   'saasus-platform/authapi/createtenantuser.js',
