@@ -22,6 +22,7 @@ const executeFunction = createExecuteFunction(
  */
 const apiTool = {
   function: executeFunction,
+  httpMethod: 'post',
   definition: {
     type: 'function',
     function: {

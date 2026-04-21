@@ -20,6 +20,7 @@ const executeFunction = createExecuteFunction(
  */
 const apiTool = {
   function: executeFunction,
+  httpMethod: 'patch',
   definition: {
     type: 'function',
     function: {

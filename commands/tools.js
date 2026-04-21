@@ -5,7 +5,9 @@ export function registerToolsCommand(program) {
     .command("tools")
     .description("List all available API tools")
     .action(async () => {
-      const tools = await discoverTools();
+      const isReadOnlyMode =
+        process.env.SAASUS_PLATFORM_API_READ_ONLY_MODE === "true";
+      const tools = await discoverTools(isReadOnlyMode);
       if (tools.length === 0) {
         console.log("No tools found. Tools should be organized as:");
         console.log("tools/workspace/collection/request.js\n");
