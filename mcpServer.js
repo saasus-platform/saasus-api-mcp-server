@@ -22,6 +22,9 @@ dotenv.config({ path: path.resolve(__dirname, ".env") });
 
 const SERVER_NAME = "saasus-api-mcp-server";
 
+const isReadOnlyMode =
+  process.env.SAASUS_PLATFORM_API_READ_ONLY_MODE === "true";
+
 async function transformTools(tools) {
   return tools
     .map((tool) => {
@@ -60,7 +63,7 @@ async function run() {
     process.exit(0);
   });
 
-  const tools = await discoverTools();
+  const tools = await discoverTools(isReadOnlyMode);
 
   server.setRequestHandler(ListToolsRequestSchema, async () => ({
     tools: await transformTools(tools),

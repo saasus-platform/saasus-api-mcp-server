@@ -23,6 +23,7 @@ const executeFunction = createExecuteFunction(
  */
 const apiTool = {
   function: executeFunction,
+  httpMethod: 'get',
   definition: {
     type: 'function',
     function: {

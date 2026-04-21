@@ -20,6 +20,7 @@ const executeFunction = createExecuteFunction(
  */
 const apiTool = {
   function: executeFunction,
+  httpMethod: 'delete',
   definition: {
     type: 'function',
     function: {
