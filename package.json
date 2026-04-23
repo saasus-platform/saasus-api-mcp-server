@@ -1,8 +1,11 @@
 {
-  "name": "postman-agent-generator-mcp",
+  "name": "saasus-api-mcp-server",
   "version": "1.0.0",
   "description": "A simple MCP server with packaged tools",
   "main": "index.js",
+  "bin": {
+    "saasus-api-mcp-server": "./mcpServer.js"
+  },
   "type": "module",
   "scripts": {
     "list-tools": "node index.js tools"
