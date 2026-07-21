@@ -10,7 +10,7 @@ const executeFunction = createExecuteFunction(
   'get',
   '/tenants/all/users/search',
   [],
-  [{"name":"tenant_id","type":"string","required":false,"description":"Tenant ID"},{"name":"id","type":"string","required":false,"description":"User ID"},{"name":"email","type":"string","required":false,"description":"Email prefix"},{"name":"sign_in_id","type":"string","required":false,"description":"Sign-in ID prefix"},{"name":"env_id","type":"number","required":false,"description":"Environment ID"},{"name":"role_id","type":"string","required":false,"description":"Role ID"},{"name":"limit","type":"number","required":false,"description":"Maximum number of items to retrieve"},{"name":"cursor","type":"string","required":false,"description":"Cursor for cursor pagination"}],
+  [{"name":"tenant_id","type":"string","required":false,"description":"Tenant ID"},{"name":"id","type":"string","required":false,"description":"User ID"},{"name":"email","type":"string","required":false,"description":"Email prefix"},{"name":"sign_in_id","type":"string","required":false,"description":"Sign-in ID prefix"},{"name":"env_id","type":"number","required":false,"description":"Environment ID"},{"name":"role_name","type":"string","required":false,"description":"Role Name"},{"name":"limit","type":"number","required":false,"description":"Maximum number of items to retrieve"},{"name":"cursor","type":"string","required":false,"description":"Cursor for cursor pagination"}],
   {"properties":{},"required":[]},
   'searchTenantUsers'
 );
@@ -49,9 +49,9 @@ const apiTool = {
                   "type": "number",
                   "description": "Environment ID"
             },
-            "role_id": {
+            "role_name": {
                   "type": "string",
-                  "description": "Role ID"
+                  "description": "Role Name"
             },
             "limit": {
                   "type": "number",
