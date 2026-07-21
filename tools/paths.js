@@ -34,6 +34,7 @@ export const toolPaths = [
   'saasus-platform/authapi/updateauthinfo.js',
   'saasus-platform/authapi/getsaasusers.js',
   'saasus-platform/authapi/createsaasuser.js',
+  'saasus-platform/authapi/searchsaasusers.js',
   'saasus-platform/authapi/getsaasuser.js',
   'saasus-platform/authapi/deletesaasuser.js',
   'saasus-platform/authapi/updatesaasuserpassword.js',
