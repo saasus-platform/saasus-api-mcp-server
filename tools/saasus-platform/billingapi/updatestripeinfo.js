@@ -12,7 +12,7 @@ const executeFunction = createExecuteFunction(
   '/stripe/info',
   [],
   [],
-  {"properties":{"secret_key":{"type":"string","description":"secret key","x-description-i18n":{"jpn":"シークレットキー"},"example":"sk_test_09l3shTSTKHYCzzZZsiLl2vA"}},"required":["secret_key"]},
+  {"properties":{"secret_key":{"type":"string","description":"secret key","x-description-i18n":{"jpn":"シークレットキー"},"example":"sk_test_dummy"}},"required":["secret_key"]},
   'updateStripeInfo'
 );
 
