@@ -513,6 +513,8 @@ paths:
       responses:
         200:
           description: OK
+        501:
+          description: Not Implemented
         500:
           description: Internal Server Error
           content:
