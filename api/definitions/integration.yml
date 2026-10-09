@@ -116,6 +116,8 @@ paths:
       responses:
         201:
           description: Created
+        501:
+          description: Not Implemented
         500:
           description: Internal Server Error
           content:
@@ -269,4 +271,3 @@ components:
         - event_type
         - event_detail_type
         - message
-
