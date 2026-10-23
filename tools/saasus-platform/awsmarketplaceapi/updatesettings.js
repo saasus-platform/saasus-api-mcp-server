@@ -11,7 +11,7 @@ const executeFunction = createExecuteFunction(
   '/settings',
   [],
   [],
-  {"properties":{"product_code":{"type":"string","example":1234567890},"role_arn":{"type":"string","example":"arn:aws:iam::123456789012:role/role-name"},"role_external_id":{"type":"string","example":1234567890},"sns_topic_arn":{"type":"string","example":"arn:aws:sns:us-east-1:123456789012:topic-name"},"cas_bucket_name":{"type":"string","example":"cas-bucket-name"},"cas_sns_topic_arn":{"type":"string","example":"arn:aws:sns:us-east-1:123456789012:topic-name"},"seller_sns_topic_arn":{"type":"string","example":"arn:aws:sns:us-east-1:123456789012:topic-name"},"sqs_arn":{"type":"string","example":"arn:aws:sqs:us-east-1:123456789012:queue_name"}},"required":[]},
+  {"properties":{"product_code":{"type":"string","example":"1234567890"},"role_arn":{"type":"string","example":"arn:aws:iam::123456789012:role/role-name"},"role_external_id":{"type":"string","example":"1234567890"},"sns_topic_arn":{"type":"string","example":"arn:aws:sns:us-east-1:123456789012:topic-name"},"cas_bucket_name":{"type":"string","example":"cas-bucket-name"},"cas_sns_topic_arn":{"type":"string","example":"arn:aws:sns:us-east-1:123456789012:topic-name"},"seller_sns_topic_arn":{"type":"string","example":"arn:aws:sns:us-east-1:123456789012:topic-name"},"sqs_arn":{"type":"string","example":"arn:aws:sqs:us-east-1:123456789012:queue_name"}},"required":[]},
   'updateSettings'
 );
 
