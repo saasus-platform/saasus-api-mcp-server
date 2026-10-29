@@ -39,6 +39,5 @@ export async function makeSigHeader(url, APIKey, SaaSID, SecretKey, body, method
     const signature = getSignature(url, method, APIKey, SecretKey, body, now);
 
     const header = `SAASUSSIGV1 Sig=${signature}, SaaSID=${SaaSID}, APIKey=${APIKey}`;
-    console.error("Authorization Header:", header);
     return header;
 }
