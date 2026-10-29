@@ -4,7 +4,7 @@ SaaSus API MCP Serverは、Model Context Protocol (MCP) サーバーとして動
 
 ## 前提条件
 
-- Node.js（v16以上必須、v20以上推奨）
+- Node.js（22.23.4以上の22系、または24.22.1以上の24系）
 - npm（Nodeに含まれています）
 
 ## インストール
@@ -24,6 +24,12 @@ cd saasus-api-mcp-server
 
 ```sh
 npm install
+```
+
+## テスト
+
+```sh
+npm test
 ```
 
 ## 利用可能なツールの確認

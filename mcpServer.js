@@ -11,6 +11,7 @@ import {
   McpError,
 } from "@modelcontextprotocol/sdk/types.js";
 import { discoverTools } from "./lib/tools.js";
+import { callTool } from "./tools/common/toolResult.js";
 
 import path from "path";
 import { fileURLToPath } from "url";
@@ -90,23 +91,7 @@ async function run() {
       }
     }
 
-    try {
-      const result = await tool.function(args);
-      return {
-        content: [
-          {
-            type: "text",
-            text: JSON.stringify(result, null, 2),
-          },
-        ],
-      };
-    } catch (error) {
-      console.error("[Error] Failed to fetch data:", error);
-      throw new McpError(
-        ErrorCode.InternalError,
-        `API error: ${error.message}`
-      );
-    }
+    return callTool(tool.function, args);
   });
 
   if (isSSE) {
