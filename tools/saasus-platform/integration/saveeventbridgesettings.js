@@ -11,7 +11,7 @@ const executeFunction = createExecuteFunction(
   '/eventbridge/info',
   [],
   [],
-  {"properties":{"aws_account_id":{"type":"string","example":267185063265,"description":"AWS Account ID","x-description-i18n":{"jpn":"AWSアカウントID"}},"aws_region":{"title":"AWS Regions","x-title-i18n":{"jpn":"AWSリージョン"},"type":"string","enum":["us-east-1","us-east-2","us-west-1","us-west-2","af-south-1","ap-east-1","ap-south-1","ap-northeast-1","ap-northeast-2","ap-northeast-3","ap-southeast-1","ap-southeast-2","ap-southeast-3","ca-central-1","eu-central-1","eu-north-1","eu-south-1","eu-west-1","eu-west-2","eu-west-3","me-south-1","sa-east-1"],"description":"All AWS regions except Ningxia and Beijing in China can be selected.\n","x-description-i18n":{"jpn":"中国の寧夏、北京を除く全てのAWSリージョンが選択可能です。\n"}}},"required":["aws_account_id","aws_region"]},
+  {"properties":{"aws_account_id":{"type":"string","example":"267185063265","description":"AWS Account ID","x-description-i18n":{"jpn":"AWSアカウントID"}},"aws_region":{"title":"AWS Regions","x-title-i18n":{"jpn":"AWSリージョン"},"type":"string","enum":["us-east-1","us-east-2","us-west-1","us-west-2","af-south-1","ap-east-1","ap-south-1","ap-northeast-1","ap-northeast-2","ap-northeast-3","ap-southeast-1","ap-southeast-2","ap-southeast-3","ca-central-1","eu-central-1","eu-north-1","eu-south-1","eu-west-1","eu-west-2","eu-west-3","me-south-1","sa-east-1"],"description":"All AWS regions except Ningxia and Beijing in China can be selected.\n","x-description-i18n":{"jpn":"中国の寧夏、北京を除く全てのAWSリージョンが選択可能です。\n"}}},"required":["aws_account_id","aws_region"]},
   'saveEventBridgeSettings'
 );
 
