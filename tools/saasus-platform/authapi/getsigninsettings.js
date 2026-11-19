@@ -1,7 +1,6 @@
 /**
- * Get Password Requirements
- * Get user password requirements.
-Set a secure password that is difficult to decipher by increasing the number of digits by combining alphabets, numbers, and symbols.
+ * Get Sign-In Settings
+ * Get sign-in settings, including user password requirements and refresh token validity period.
 
  */
 import { createExecuteFunction } from "../../common/executeFunction.js";
@@ -26,7 +25,7 @@ const apiTool = {
     type: 'function',
     function: {
       name: 'getsigninsettings',
-      description: `Get Password Requirements: Get user password requirements. Set a secure password that is difficult to decipher by increasing the number of digits by combining alphabets, numbers, and symbols. `,
+      description: `Get Sign-In Settings: Get sign-in settings, including user password requirements and refresh token validity period. `,
       parameters: {
       "type": "object",
       "properties": {},
