@@ -10,7 +10,7 @@ const executeFunction = createExecuteFunction(
   '/identity-providers',
   [],
   [],
-  {"properties":{"provider":{"type":"string","enum":["Google"],"example":"Google"},"identity_provider_props":{"type":"object","properties":{"application_id":{"type":"string","example":1234567890123456},"application_secret":{"type":"string","example":"123456789b00def123456a12345678d1"},"approval_scope":{"type":"string","example":"profile email openid"},"is_button_hidden":{"type":"boolean","example":false}},"required":["application_id","application_secret","approval_scope"]}},"required":["provider"]},
+  {"properties":{"provider":{"type":"string","enum":["Google"],"example":"Google"},"identity_provider_props":{"type":"object","properties":{"application_id":{"type":"string","example":"1234567890123456"},"application_secret":{"type":"string","example":"123456789b00def123456a12345678d1"},"approval_scope":{"type":"string","example":"profile email openid"},"is_button_hidden":{"type":"boolean","example":false}},"required":["application_id","application_secret","approval_scope"]}},"required":["provider"]},
   'updateIdentityProvider'
 );
 
